@@ -1,5 +1,5 @@
 
 export interface IBrand {
-    info(): void;
+	info(): void;
 }
 
