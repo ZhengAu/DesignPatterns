@@ -16,11 +16,13 @@ export class Desktop extends Computer {
 
 	constructor(brand: IBrand) {
 		super(brand);
+		this.brand.brandName = `台式机`;
 	}
 }
 
 export class Laptop extends Computer {
 	constructor(brand: IBrand) {
 		super(brand);
+		this.brand.brandName = `笔记本`;
 	}
 }
