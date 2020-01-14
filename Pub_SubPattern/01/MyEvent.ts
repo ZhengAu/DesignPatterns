@@ -18,12 +18,15 @@ export class MyEvent {
 		this.events[key].push(func);
 	}
 
-	public triggerEvent1(key: string): void {
-
-	}
-
-	public triggerEvent2(...params: any[]): void {
-
+	public triggerEvent(key: string, ...param: any[]): void {
+		let funs = this.events[key];
+		if (!funs || !funs.length) {
+			return;
+		}
+		let params = param;
+		funs.forEach(item => {
+			item.apply(this, params);
+		});
 	}
 
 	public removeEvent(key: string, func: Function): void {
@@ -41,6 +44,22 @@ export class MyEvent {
 	}
 
 	public removeEvents(): void {
-
+		let keys = Object.keys(this.events);
+		for (let i = 0; i < keys.length; i++) {
+			this.events[keys[i]] = [];
+		}
+		this.events = {};
 	}
 }
+
+let func1 = function (price: number) {
+	console.log(`price = `, price);
+}
+let func2 = function (price: number, num: number = 100) {
+	console.log(`price = ${price}, num = ${num}.`);
+}
+
+MyEvent.ins().addEvent('myEvent', func1);
+MyEvent.ins().addEvent('myEvent2', func2);
+MyEvent.ins().triggerEvent('myEvent', 1200);
+MyEvent.ins().triggerEvent('myEvent2', 1200, 100000);
