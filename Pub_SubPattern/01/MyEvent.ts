@@ -77,3 +77,15 @@ MyEvent.ins().addEvent('myEvent', func1);
 MyEvent.ins().addEvent('myEvent2', func2);
 MyEvent.ins().triggerEvent('myEvent', 1200);
 MyEvent.ins().triggerEvent('myEvent2', 1200, 100000);
+
+console.log(`===================================================`);
+
+let postChange = function () {
+	console.log(`postChange...`);
+
+}
+let postChangeKey = GlobalFunc.getQualifiedClassName(postChange);
+
+MyEvent.ins().addEvent(postChangeKey, func1);
+MyEvent.ins().addEvent(postChangeKey, func2);
+MyEvent.ins().triggerEvent(postChangeKey, 8989898989);
