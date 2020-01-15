@@ -1,4 +1,5 @@
 import * as GlobalFunc from "../02/GlobalFunc";
+import { MessageType } from "../03/MessageType";
 
 export class MyEvent {
 	public events: any = {};
@@ -142,3 +143,27 @@ MyEvent.ins().triggerEvent(keyPoint);
 console.log(MyEvent.ins().events);
 MyEvent.ins().triggerEvent(keyPoint);
 console.log(MyEvent.ins().events);
+
+console.log(`========================test3===========================`);
+let ins = MyEvent.ins();
+let postFun1 = function () {
+	console.log(`postFun1...`);
+}
+let postFun2 = function () {
+	console.log(`postFun2...`);
+}
+ins.addEvent(MessageType.UPDATE_MESSAGE, postFun1);
+ins.addEvent(MessageType.UPDATE_MESSAGE, postFun2);
+ins.triggerEvent(MessageType.UPDATE_MESSAGE);
+
+let loginFun1 = function () {
+	console.log(`loginFun1...`);
+}
+
+let loginFun2 = function () {
+	console.log(`loginFun2...`);
+}
+
+ins.addEvent(MessageType.UPDATE_LOGIN_INFO, loginFun1);
+ins.addEvent(MessageType.UPDATE_LOGIN_INFO, loginFun2);
+ins.triggerEvent(MessageType.UPDATE_LOGIN_INFO);
