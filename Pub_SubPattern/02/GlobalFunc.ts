@@ -31,6 +31,11 @@ function getQualifiedClassName(value: any): string {
 	return className;
 }
 
+/**
+ * 返回对象的完全限定类名
+ * @param value 需要完全限定类名称的对象，可以将任何 JavaScript 值传递给此方法，包括所有可用的 JavaScript 类型、对象实例、原始类型（如number)和类对象
+ * @returns 包含完全限定类名称的字符串。
+ */
 function getQualifiedClassName2(value: any): string {
 	var type = typeof value;
 	if (!value || (type != "object" && !value.prototype)) {
