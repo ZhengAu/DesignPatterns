@@ -16,6 +16,12 @@ export class MyEvent {
 		if (!this.events[key]) {
 			this.events[key] = [];
 		}
+		let funs = this.events[key];
+		for (let i = 0, fun; fun = funs[i++];) {
+			if (fun == func) {
+				return;
+			}
+		}
 		this.events[key].push(func);
 	}
 
