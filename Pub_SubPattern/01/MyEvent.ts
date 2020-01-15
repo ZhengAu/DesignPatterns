@@ -1,3 +1,4 @@
+import * as GlobalFunc from "../02/GlobalFunc";
 
 export class MyEvent {
 	public events: any = {};
@@ -34,19 +35,32 @@ export class MyEvent {
 		if (!funs || !funs.length) {
 			return;
 		}
-		let index: number = 0;
-		for (let item of funs) {
-			if (item && item === func) {
-				funs.splice(index, 1);
+		for (let i = 0, fun; fun = funs[i++];) {
+			if (fun == func) {
+				funs.splice(i, 1);
 			}
-			index++;
+		}
+		if (!funs.length) {
+			delete this.events[key];
 		}
 	}
 
-	public removeEvents(): void {
+	public removeEvents(key: string): void {
+		let funs = this.events[key];
+		if (!funs) {
+			return;
+		}
+		for (let fun of funs) {
+			this.removeEvent(key, fun);
+		}
+		delete this.events[key];
+	}
+
+	public removeAllEvent(): void {
 		let keys = Object.keys(this.events);
-		for (let i = 0; i < keys.length; i++) {
-			this.events[keys[i]] = [];
+		for (let key of keys) {
+			this.removeEvents(key);
+			delete this.events[key];
 		}
 		this.events = {};
 	}
