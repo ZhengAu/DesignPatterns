@@ -1,4 +1,5 @@
 import { BaseClass } from "./BaseClass";
+import { GlobalFunc } from "./GlobalFunc";
 
 export class EventListener extends BaseClass {
 	public events: any = {};
@@ -70,5 +71,31 @@ export class EventListener extends BaseClass {
 			delete this.events[key];
 		}
 		this.events = {};
+	}
+
+	public observe(func: Function, myFunc: Function): void {
+		let type = typeof func;
+		if (type != 'function') {
+			console.log(`observe 第一个参数不是 Function。`);
+			return;
+		}
+		let funcFullName = GlobalFunc.ins().getQualifiedClassName(func);
+		this.addEventListener(funcFullName, myFunc, this);
+	}
+
+	public trigger(func: Function): void {
+		let type = typeof func;
+		if (type != 'function') {
+			console.log(`trigger 参数不是 Function。`);
+			return;
+		}
+		let funcFullName = GlobalFunc.ins().getQualifiedClassName(func);
+		this.triggerEventListener(funcFullName);
+	}
+
+	public associate(myFunc: Function, ...params: Function[]): void {
+		for (let i = 0; i < params.length; i++) {
+			this.observe(params[i], myFunc);
+		}
 	}
 }
