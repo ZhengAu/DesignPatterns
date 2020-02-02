@@ -1,31 +1,32 @@
-import { IElement } from "./IElement";
-import { IVisitor } from "./IVisitor";
+import { Person } from "./Person";
+import { Action } from "./Action";
 
+/**
+ * 对象结构，就只有男或女两种性别，所以需要其对比
+ */
 export class ObjectStruct {
-	public list: IElement[] = [];
+	public list: Person[] = [];
 
-	public add(element: IElement): void {
+	public add(person: Person): void {
 		for (let item of this.list) {
-			if (item === element) {
+			if (item === person) {
 				return;
 			}
 		}
-		this.list.push(element);
+		this.list.push(person);
 	}
 
-	public remove(element: IElement): void {
-		let index: number = 0;
-		for (let item of this.list) {
-			if (item === element) {
-				this.list.splice(index, 1);
+	public remove(person: Person): void {
+		for (let i: number = 0, len = this.list.length; i < len; i++) {
+			if (this.list[i] === person) {
+				this.list.splice(i, 1);
 			}
-			index++;
 		}
 	}
 
-	public showInfo(visitor: IVisitor): void {
+	public showInfo(action: Action): void {
 		this.list.forEach(item => {
-			item.accept(visitor);
+			item.acceptAction(action);
 		});
 	}
 }

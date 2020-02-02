@@ -1,12 +1,15 @@
+import { Man, Woman } from "./Person";
+import { Success, Failure } from "./Action";
 import { ObjectStruct } from "./ObjectStruct";
-import { ConcreteElementA, ConcreteElementB } from "./ConcreteElement";
-import { ConcreteVisitor1 } from "./ConcreteVisitor";
 
-let objStruct: ObjectStruct = new ObjectStruct();
-let eleA: ConcreteElementA = new ConcreteElementA();
-let eleB: ConcreteElementB = new ConcreteElementB();
-objStruct.add(eleA);
-objStruct.add(eleB);
+let struct: ObjectStruct = new ObjectStruct();
+let man: Man = new Man();
+let woman: Woman = new Woman();
+struct.add(man);
+struct.add(woman);
 
-let visitorA: ConcreteVisitor1 = new ConcreteVisitor1();
-objStruct.showInfo(visitorA);
+let success: Success = new Success();
+let failure: Failure = new Failure();
+
+struct.showInfo(success);
+struct.showInfo(failure);
