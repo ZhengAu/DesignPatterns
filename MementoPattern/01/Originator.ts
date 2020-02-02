@@ -1,5 +1,9 @@
 import { Memento } from "./Memento";
 
+/**
+ * 发起者，需要保存数据
+ * 创建备忘录并保存数据到备忘录中，也可从备忘录中恢复数据
+ */
 export class Originator {
 
 	// 需要保存的数据
