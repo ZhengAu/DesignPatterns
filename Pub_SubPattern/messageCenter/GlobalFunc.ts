@@ -1,15 +1,17 @@
-import { BaseClass } from "./BaseClass";
+import { BaseClass } from './BaseClass';
 
 export class GlobalFunc extends BaseClass {
 	public static ins: () => GlobalFunc;
 
 	public getQualifiedClassName(value: any): string {
 		var type = typeof value;
-		if (!value || (type != "object" && !value.prototype)) {
+		if (!value || (type != 'object' && !value.prototype)) {
 			return type;
 		}
 
-		let prototype = value.prototpye ? value.prototpye : Object.getPrototypeOf(value);
+		let prototype = value.prototype
+			? value.prototype
+			: Object.getPrototypeOf(value);
 		if (prototype.hasOwnProperty('__class__') && prototype['__class__']) {
 			return prototype['__class__'];
 		} else if (type == 'function' && value.name) {
@@ -29,7 +31,7 @@ export class GlobalFunc extends BaseClass {
 		Object.defineProperty(prototype, '__class__', {
 			value: className,
 			enumerable: false,
-			writable: true
+			writable: true,
 		});
 
 		return className;
@@ -42,20 +44,22 @@ export class GlobalFunc extends BaseClass {
 	 */
 	public getQualifiedClassName2(value: any): string {
 		var type = typeof value;
-		if (!value || (type != "object" && !value.prototype)) {
+		if (!value || (type != 'object' && !value.prototype)) {
 			return type;
 		}
-		var prototype = value.prototype ? value.prototype : Object.getPrototypeOf(value);
-		if (prototype.hasOwnProperty("__class__")) {
-			return prototype["__class__"];
+		var prototype = value.prototype
+			? value.prototype
+			: Object.getPrototypeOf(value);
+		if (prototype.hasOwnProperty('__class__')) {
+			return prototype['__class__'];
 		}
 		var constructorString = prototype.constructor.toString().trim();
-		var index = constructorString.indexOf("(");
+		var index = constructorString.indexOf('(');
 		var className = constructorString.substring(9, index);
-		Object.defineProperty(prototype, "__class__", {
+		Object.defineProperty(prototype, '__class__', {
 			value: className,
 			enumerable: false,
-			writable: true
+			writable: true,
 		});
 		return className;
 	}
@@ -66,6 +70,4 @@ export class GlobalFunc extends BaseClass {
 		}
 		return func && func.name ? func.name : 'anonymous';
 	}
-
 }
-
