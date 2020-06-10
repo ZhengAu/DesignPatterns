@@ -2,9 +2,7 @@
  * 基础类
  */
 export class BaseClass {
-	public constructor() {
-
-	}
+	public constructor() {}
 
 	public static ins(): any {
 		let Class: any = this;

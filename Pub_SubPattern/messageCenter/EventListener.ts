@@ -1,5 +1,5 @@
-import { BaseClass } from "./BaseClass";
-import { GlobalFunc } from "./GlobalFunc";
+import { BaseClass } from './BaseClass';
+import { GlobalFunc } from './GlobalFunc';
 
 export class EventListener extends BaseClass {
 	public events: any = {};

@@ -1,5 +1,5 @@
-import { EventListener } from "./EventListener";
-import { MessageType } from "./MessageType";
+import { EventListener } from './EventListener';
+import { MessageType } from './MessageType';
 
 let eventListener = EventListener.ins();
 
@@ -8,11 +8,11 @@ console.log('	=====================test1=====================');
 
 let testFun1 = function () {
 	console.log(`testFun1...`);
-}
+};
 let testFun2 = function () {
 	console.log(`testFun2...`);
 	eventListener.removeEventListener(MessageType.TYPE_TEST_1, testFun1);
-}
+};
 eventListener.addEventListener(MessageType.TYPE_TEST_1, testFun1);
 eventListener.addEventListener(MessageType.TYPE_TEST_1, testFun1);
 eventListener.addEventListener(MessageType.TYPE_TEST_1, testFun1);

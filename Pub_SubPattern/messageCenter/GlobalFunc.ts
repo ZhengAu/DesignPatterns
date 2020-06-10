@@ -9,9 +9,7 @@ export class GlobalFunc extends BaseClass {
 			return type;
 		}
 
-		let prototype = value.prototype
-			? value.prototype
-			: Object.getPrototypeOf(value);
+		let prototype = value.prototype ? value.prototype : Object.getPrototypeOf(value);
 		if (prototype.hasOwnProperty('__class__') && prototype['__class__']) {
 			return prototype['__class__'];
 		} else if (type == 'function' && value.name) {
@@ -48,9 +46,7 @@ export class GlobalFunc extends BaseClass {
 		if (!value || (type != 'object' && !value.prototype)) {
 			return type;
 		}
-		var prototype = value.prototype
-			? value.prototype
-			: Object.getPrototypeOf(value);
+		var prototype = value.prototype ? value.prototype : Object.getPrototypeOf(value);
 		if (prototype.hasOwnProperty('__class__')) {
 			return prototype['__class__'];
 		}
@@ -81,9 +77,7 @@ export class GlobalFunc extends BaseClass {
 			return func.name;
 		}
 
-		let prototype = func.prototype
-			? func.prototype
-			: Object.getPrototypeOf(func);
+		let prototype = func.prototype ? func.prototype : Object.getPrototypeOf(func);
 		if (prototype && prototype.constructor.name) {
 			return prototype.constructor.name;
 		}
